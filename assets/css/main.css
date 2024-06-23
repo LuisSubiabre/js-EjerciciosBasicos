@@ -6,9 +6,19 @@ body{
 h1, p{
     text-align: center;
 }
+article{
+    background-image: 
+        radial-gradient(circle, transparent, #1612);
+    width: 350px;
+    padding: 10px;
+}
 a{
     text-decoration: none;
     color: yellow;
+}
+.container{
+    display: grid;
+    justify-content: center;
 }
 .img-square{
     display: flex;
@@ -17,4 +27,35 @@ a{
 #jsTitle{
     background-color: yellow;
     color: #222;
+}
+
+pre {
+    background-color: #454141;
+    
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    overflow: auto;
+    font-size: 16px;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    color: yellow;
+}
+.iconos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:left;
+    gap: 25px;
+}
+
+.icono {
+    background-color: #454141;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+    padding: 25px;
+    overflow: auto;
+    font-size: 24px;
 }

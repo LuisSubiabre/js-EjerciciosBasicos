@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+
+</head>
+
+<body>
+    <div>
+        <h2>Escala mayode de Do:</h2>
+        <ul id="notas"></ul>
+    </div>
+    <script>
+        const elemento = document.querySelector('#notas');
+        let html = "";
+        const escalaMayorDeDo = [
+            "Do",
+            "Re",
+            "Mi",
+            "Fa",
+            "Sol",
+            "La",
+            "Si",
+        ];
+        for(nota of escalaMayorDeDo){
+            html += `<li>${nota}</li>`
+        }
+        elemento.innerHTML = html;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+
+</head>
+
+<body>
+    <h1>Ejercicio</h1>
+    <ol>
+        <li> Crea el HTML con una sección para el producto.</li>
+        <li> Crea una variable para contener la sección del HTML y
+            selecciónala utilizando document.querySelector.</li>
+        <li> Crea una variable con el objeto producto mostrado.</li>
+        <li> Crea un template usando la interpolación y los datos del
+            producto.</li>
+        <li> Utiliza el innerHTML para agregar los datos al HTML</li>
+    </ol>
+    <hr>
+    <div class="container">
+        <section class="productos"></section>
+    </div>
+
+    <script>
+        const producto = {
+            id: 43,
+            titulo: "Cafetera magnética",
+            precio: 23990,
+            color: "rojo",
+            src: "...", // ingresa aquí la URL de la imagen,
+            description: `Calienta tu café matutino
+con la nueva tecnología magnética`
+        };
+
+        const productosSection = document.querySelector(".productos");
+        productosSection.innerHTML = `
+    <article>
+        <h4>${producto.titulo}</h4>
+        <h6>${producto.description}</h6>
+        <p>$${producto.precio}</p>
+        <a href="/producto/${producto.id}"><button>Comprar</button></a>
+    </article>    
+    `
+    </script>
+</body>
+
+</html>

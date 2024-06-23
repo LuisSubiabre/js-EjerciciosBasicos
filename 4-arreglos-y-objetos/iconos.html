@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iconos</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+
+</head>
+<body>
+    <p>Crea una galería de iconos utilizando el siguiente arreglo de
+        objetos:</p>
+
+        <pre><code>
+            const iconos = [
+            { icono: "🚗", descripcion: "Auto" },
+            { icono: "🤖", descripcion: "Robot" },
+            { icono: "👻", descripcion: "Fantasma" },
+            { icono: "👽", descripcion: "Alien" },
+            { icono: "🦷", descripcion: "Diente" },
+            { icono: "🕹", descripcion: "Joystick" }
+            ];
+                </code></pre>
+<h2>Indicaciones</h2>
+<ol>
+    <li>Crea una sección HTML con la clase .iconos.</li>
+    <li>Genera el arreglo de objetos con los iconos.</li>
+    <li>Crea una variable para contener la sección del HTML y
+    selecciónala utilizando document.querySelector.</li>
+    <li>Recorre el arreglo de iconos y genera el template que desees
+    para mostrar el ícono.</li>
+    <li>Agrega en cada iteración el template generado en la sección
+    de iconos del HTML</li>
+</ol>
+
+    <hr>
+    <section class="iconos">
+
+    </section>
+
+    <script>
+        const iconos = [
+            { icono: "🚗", descripcion: "Auto" },
+            { icono: "🤖", descripcion: "Robot" },
+            { icono: "👻", descripcion: "Fantasma" },
+            { icono: "👽", descripcion: "Alien" },
+            { icono: "🦷", descripcion: "Diente" },
+            { icono: "🕹", descripcion: "Joystick" }
+            ];
+        const elemento = document.querySelector('.iconos');
+        let html = '';
+        for(icon of iconos){
+            html += `<div class="icono"><p>${icon.icono}</p><p>${icon.descripcion}</p></div>`;
+        }
+        elemento.innerHTML = html;
+    </script>
+</body>
+</html>

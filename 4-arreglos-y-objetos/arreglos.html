@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arreglo</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<article id="productos">
+
+</article>
+
+<body>
+    <script>
+        const productos = [
+            {
+                id: 1,
+                nombre: "Item 1",
+                precio: "12000"
+            },
+            {
+                id: 2,
+                nombre: "Item 2",
+                precio: "14000"
+            }
+        ]
+        let html = ""
+        for (let producto of productos) {
+            html += `<div id="${producto.id} class="producto">
+            <h2> ${producto.nombre} </h2>
+            <p> ${producto.precio} </p>
+            </div> `
+        }
+        const ele = document.querySelector("#productos")
+        ele.innerHTML = html
+    </script>
+</body>
+
+</html>
