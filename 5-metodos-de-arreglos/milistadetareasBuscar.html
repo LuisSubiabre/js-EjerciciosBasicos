@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Arreglos</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de tareas</h1>
+    <input id="nuevaTarea" type="text">
+    <button id="agregarTarea">Agregar</button>
+    <span id="error" class="error"></span>
+
+    <h3>Buscar:</h3>
+    
+    <input id="buscador"> 
+    <button id="btnBuscar">buscar</button> 
+    <button id="btnTodo">Mostrar todo</button>
+    <span id="cuenta-tareas">Tareas totales: 0</span>
+    <table>
+        <thead>
+            <th>Tarea</th>
+            <th>Eliminar</th>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <script>
+        const inputTarea = document.querySelector('#nuevaTarea');
+        const btnAgregar = document.querySelector('#agregarTarea');
+        const listaTareas = document.querySelector('tbody');
+        const msgError = document.querySelector('#error');
+        const cuentaTareas = document.querySelector('#cuenta-tareas');
+
+
+        const btnBuscar = document.querySelector("#btnBuscar");
+        const inputBuscar = document.querySelector("#buscador");
+
+        const tareas = [];
+
+        btnAgregar.addEventListener('click', () => {
+            let tareaAgregar = inputTarea.value.trim();
+            if (tareaAgregar === '' || tareaAgregar === 0) {
+                msgError.innerHTML = 'Tienes que ingresar una tarea.';
+            } else {
+                tareas.push({ id: Date.now(), nombre: tareaAgregar });
+
+                inputTarea.value = '';
+                renderiza(tareas);
+            }
+        })
+
+        eliminar = (id) => {
+            let indexDelete = tareas.findIndex((elemento) => elemento.id === id);
+            tareas.splice(indexDelete, 1);
+
+            renderiza(tareas);
+
+        }
+
+        renderiza = (items) => {
+            let html = '';
+            for (tarea of items) {
+                html += `
+                <tr>
+                    <td>${tarea.nombre}</td>
+                    <td> <button onclick='eliminar(${tarea.id})'>
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                        </button>
+                    </td>
+                </tr>`;            }
+            listaTareas.innerHTML = html
+            msgError.innerHTML = '';
+            cuentaTareas.innerHTML = 'Tareas totales: ' + tareas.length;
+        }
+
+        /* logica del buscador */
+        btnBuscar.addEventListener('click', () => {
+            const valorBuscar = inputBuscar.value;
+            const tareasFiltradas = tareas.filter(
+                (task) => task.nombre == valorBuscar
+            );
+            renderiza(tareasFiltradas);
+
+        });
+
+        btnTodo.addEventListener('click', () => {
+           inputBuscar.value = '';
+            renderiza(tareas);
+
+        });
+
+
+    </script>
+</body>
+
+</html>
