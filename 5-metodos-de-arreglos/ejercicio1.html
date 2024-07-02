@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Arreglos</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+
+<body>
+    <h1>Agregando elementos con push</h1>
+    <p>Crea el archivo 'superheroes.js' donde a partir del siguiente arreglo deberás</p>
+    <pre> <code>
+    let superHeroes= [
+        "Ironman",
+        "Superman",
+        "Hawkeye"
+    ]
+    </code></pre>
+    <ol>
+        <li>Agregar el nombre de un superhéroe al final del arreglo usando el método push</li>
+        <li>Agregar el nombre de un superhéroe al principio del arreglo usando el método unshift</li>
+        <li>Agregar el nombre de un tercer superhéroe en la mitad del arreglo usando el método splice</li>
+        <li>Mostrar el arreglo utilizando console.log</li>
+    </ol>
+
+    <code>superHeroes.push('Hulk');</code>
+    <code>superHeroes.unshift('Thor');</code>
+    <code>superHeroes.splice(2, 0, 'Star-Lord');</code>
+    <code>console.log(superHeroes);</code>
+</body>
+
+<script>
+    let superHeroes= [
+        "Ironman",
+        "Superman",
+        "Hawkeye"
+    ];
+    superHeroes.push('Hulk');
+    superHeroes.unshift('Thor');
+    superHeroes.splice(2, 0, 'Star-Lord');
+    console.log(superHeroes);
+</script>
+</body>
+</html>

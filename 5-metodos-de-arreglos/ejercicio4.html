@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Arreglos</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+
+<body>
+    <h1>Filtrar y contar</h1>
+    <pre><code>let trabajadores = [
+        {nombre: "Contanza", cargo: "Chef"},
+        {nombre: "Luis", cargo: "garzón"},
+        {nombre: "Estefany", cargo: "Administradora"},
+        {nombre: "Andrés", cargo: "Recepcionista"},
+        {nombre: "Pedro", cargo: "garzón"},
+        {nombre: "Felipe", cargo: "Aseo"},
+        {nombre: "Maria", cargo: "garzón"},
+        {nombre: "Diego", cargo: "garzón"},
+        ]</code></pre>
+    <ol>
+        <li>Con el método filter, filtrar el arreglo de trabajadores, creando un nuevo arreglo
+            llamado garzones que contenga sólo los trabajadores con cargo “garzón.</li>
+        <li>Utiliza el arreglo resultante del requerimiento anterior y la propiedad length para
+            mostrar con console.log cuántos garzones hay.</li>
+
+    </ol>
+
+    <ol>
+    <li><code>const filtro = trabajadores.filter(trabajador => trabajador.cargo === 'garzón');</code></li>
+    <li><code>filtro.length(filtro);</code></li>
+</ol>
+<script>
+    let trabajadores = [
+        {nombre: "Contanza", cargo: "Chef"},
+        {nombre: "Luis", cargo: "garzón"},
+        {nombre: "Estefany", cargo: "Administradora"},
+        {nombre: "Andrés", cargo: "Recepcionista"},
+        {nombre: "Pedro", cargo: "garzón"},
+        {nombre: "Felipe", cargo: "Aseo"},
+        {nombre: "Maria", cargo: "garzón"},
+        {nombre: "Diego", cargo: "garzón"},
+        ]
+        const filtro = trabajadores.filter(trabajador => trabajador.cargo === 'garzón');
+        console.log(filtro.length);
+</script>
+</body>
+</html>

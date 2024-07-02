@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Arreglos</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de tareas</h1>
+    <input id="nuevaTarea" type="text">
+    <button id="agregarTarea">Agregar</button>
+    <span id="error" class="error"></span>
+
+    <h3>Lista de tareas:</h3>
+    <span id="cuenta-tareas">Tareas totales: 0</span>
+    <ul id="tareas"></ul>
+    <script>
+        const inputTarea = document.querySelector('#nuevaTarea');
+        const btnAgregar = document.querySelector('#agregarTarea');
+        const listaTareas = document.querySelector('#tareas');
+        const msgError = document.querySelector('#error');
+        const cuentaTareas = document.querySelector('#cuenta-tareas');
+        
+
+        const tareas = [];
+
+        btnAgregar.addEventListener('click', () => {
+            let tareaAgregar = inputTarea.value.trim();
+            if (tareaAgregar === '' || tareaAgregar === 0) {
+                msgError.innerHTML = 'Tienes que ingresar una tarea.';
+            } else {
+                tareas.push(tareaAgregar);
+                inputTarea.value = '';
+
+                let html = '';
+                for (tarea of tareas) {
+                    html += `<li>${tarea}</li>`;
+                }
+                listaTareas.innerHTML = html
+                msgError.innerHTML = '';
+                cuentaTareas.innerHTML = 'Tareas totales: ' + tareas.length;
+            }
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

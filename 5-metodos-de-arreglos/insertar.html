@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Arreglos</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+
+<body>
+    <h1>Invitados a la fiesta:</h1>
+   <input id="nuevoInvitado" type="text">
+   <button id="agregarInvitado">Agregar</button>
+   <h3>Lista de invitados:</h3>
+   <ul id="invitados"></ul>
+<script>
+   const listaInvitados = document.querySelector('#invitados');
+   const invitadoInput = document.querySelector('#nuevoInvitado');
+   const btnAgregar = document.querySelector('#agregarInvitado');
+
+   const invitados = [];
+   btnAgregar.addEventListener("click", () =>{
+    const nuevoInvitado = invitadoInput.value;
+    invitados.push(nuevoInvitado);
+    invitadoInput.value = '';
+    
+    let html = '';
+    for(let invitado of invitados){
+        html += `<li>${invitado}</li>`
+    }
+    listaInvitados.innerHTML = html;
+   })
+
+   
+   
+</script>
+</body>
+</html>

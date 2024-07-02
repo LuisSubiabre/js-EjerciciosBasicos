@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Arreglos</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+
+<body>
+    <h1>Encontrando y eliminando una película</h1>
+    <p>Realicemos el siguiente ejercicio en donde debamos eliminar la película “Terminator” del siguiente arreglo</p>
+    <pre><code>const peliculas = [
+        {id: 1, nombre: "Thor"},
+        {id: 2, nombre: "Ant-Man"},
+        {id: 3, nombre: "Terminator"},
+        {id: 4, nombre: "Ip Man"},
+        {id: 5, nombre: "Rocky"},
+        ]</code></pre>
+    <ol>
+        <li>Utiliza el findIndex para encontrar el índice de la película Terminator.</li>
+        <li>Utiliza el splice y el índice encontrado para eliminar la película del arreglo.</li>
+        <li>Muestra por consola el arreglo de películas para confirmar que Terminator fue
+            eliminada.</li>
+    </ol>
+
+    <ol>
+    <li><code>const indicePelicua = peliculas.findIndex(pelicula => pelicula.nombre === 'Terminator');</code></li>
+    <li><code>peliculas.splice(indicePelicua,1);</code></li>
+    <li><code>console.log(peliculas);</code></li>
+</ol>
+<script>
+    const peliculas = [
+    {id: 1, nombre: "Thor"},
+    {id: 2, nombre: "Ant-Man"},
+    {id: 3, nombre: "Terminator"},
+    {id: 4, nombre: "Ip Man"},
+    {id: 5, nombre: "Rocky"},
+    ];
+    const indicePelicua = peliculas.findIndex(pelicula => pelicula.nombre === 'Terminator');
+    peliculas.splice(indicePelicua,1);
+    console.log(peliculas);
+</script>
+</body>
+</html>
