@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APIs</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
+</head>
+<body>
+    <h2>El método fetch()</h2>
+
+<p>El método fetch() es una interfaz de JavaScript para realizar solicitudes HTTP y procesar las respuestas. Reemplaza al método más antiguo XMLHttpRequest y ofrece una forma más sencilla y flexible de trabajar con APIs y obtener datos de servidores.</p>
+
+<h3>Características clave de fetch():</h3>
+
+<ol>
+  <li><strong>Sintaxis básica</strong>: fetch() toma una URL como argumento obligatorio y opcionalmente un objeto de opciones para configurar la solicitud. Devuelve una promesa que se resuelve con un objeto Response.</li>
+  <li><strong>Solicitudes GET y POST</strong>: fetch() se puede usar para realizar solicitudes GET y POST. Para hacer una solicitud POST, se pasa un objeto de opciones con el método establecido en "POST".</li>
+  <li><strong>Manejo de respuestas</strong>: Una vez que se resuelve la promesa de fetch(), se puede acceder a las propiedades y métodos del objeto Response para inspeccionar el estado de la respuesta y obtener el contenido del cuerpo en varios formatos como texto o JSON.</li>
+  <li><strong>Manejo de errores</strong>: fetch() no rechaza la promesa en errores HTTP como 404. Para manejar errores, se debe verificar la propiedad ok del objeto Response y lanzar un error si es necesario.</li>
+  <li><strong>Compatibilidad con navegadores</strong>: fetch() es compatible con la mayoría de los navegadores modernos, pero no con Internet Explorer. Se pueden usar polyfills para agregar compatibilidad con navegadores más antiguos.</li>
+</ol>
+
+<code>
+    <pre>
+    async function getRandomUser(){
+        const res = await fetch("https://randomuser.me/api")
+        const data = await res.json()
+        console.log(data);
+        }
+        getRandomUser()
+    </pre>
+</code>
+
+
+    <h3>Async / Await</h3>
+<p>Los métodos fetch y json() devuelven un tipo de dato especial llamado promesa. Estas
+promesas deben resolverse, pero el proceso puede demorar. Para esperar el resultado
+utilizaremos await.
+Await espera que una promesa se resuelva. Una regla importante es que que await sólo
+puede ser utilizada dentro de una función declarada async.
+</p>
+<script>
+        async function getRandomUser(){
+        const res = await fetch("https://randomuser.me/api")
+        const data = await res.json()
+        console.log(data);
+        }
+        getRandomUser();
+</script>
+</body>
+</html>

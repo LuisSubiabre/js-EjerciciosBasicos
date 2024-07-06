@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Clima</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        body {
+            text-align: center;
+            padding: 0px 40px;
+        }
+
+        .climas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .clima {
+            background: black;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Consumiendo API de clima</h1>
+    <p>endpoint: https://api.gael.cloud/general/public/clima</p>
+    <hr>
+    <h2>Ciudades - Climas</h2>
+    <section class="climas"></section>
+
+    <script>
+         /* Definimos valores a utilizar */
+        const climasSection = document.querySelector('.climas');
+        const apiURL = 'https://api.gael.cloud/general/public/clima';
+
+        /* Funcion para obtener los climas de la API GAEL */
+        async function getClimas(){
+            const res = await fetch(apiURL);
+            const data = await res.json();
+            return data;
+        }
+
+         /* Funcion para renderizar en pantalla */
+         async function renderClimas(){
+            const climas = await getClimas();
+            let template = '';
+            climas.forEach((elemento) => {
+                template += `
+                <div class="clima">
+                        <h3>${elemento.Estacion}</h3>
+                        <p>${elemento.Temp}°</p>
+                </div>
+                `
+            });
+
+            climasSection.innerHTML = template;
+         }
+
+    renderClimas();
+    </script>
+</body>
+
+</html>

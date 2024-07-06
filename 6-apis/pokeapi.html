@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultando los datos de Pikachu</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
+</head>
+<body>
+    <h2>Consultando los datos de Pikachu</h2>
+    <p>Realicemos el siguiente ejercicio en donde debas crear una función async/await para consultar el siguiente endpoint:</p>
+<ul>
+    <li>https://pokeapi.co/api/v2/pokemon/pikachu</li>
+    <li>Luego, muestra la data resultante por consola.</li>
+</ul>
+<script>
+    async function getPokemon(){
+        const res = await fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
+        const data = await res.json();
+        console.log(data);
+    }
+    getPokemon();
+</script>
+</body>
+</html>
