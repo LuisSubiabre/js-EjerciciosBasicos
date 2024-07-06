@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios de JSONPlaceholder</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
+</head>
+
+<body>
+    <h1>Sentencias Try y Catch</h1>
+    <p>Cuando se produce un error en nuestro código, el navegador muestra el error y detiene la
+        ejecución del código. Sin embargo, al utilizar la sentencia catch, podemos establecer un
+        flujo de acción a seguir en caso de que el bloque de código dentro de try falle.
+        ¿Qué puede fallar?
+        Cuando trabajamos con una API, puede ocurrir que esta se encuentre fuera de servicio o
+        responda lentamente, lo que impide que obtengamos la respuesta a nuestra consulta.
+        En tales casos, es importante poder informar al usuario mediante un mensaje de error en el
+        DOM, o incluso, intentar nuevamente el llamado a la API. Para abordar estas situaciones,
+        resultan útiles las estructuras de control “try” y “catch”.</p>
+
+    <p>Dado el siguiente fetch:</p>
+    <code>
+        fetch("http://otroejemplo.cl");
+    </code>
+<ol>
+    <li>Escribe una función async await que contenga un try catch en donde se ejecute la consulta y
+        se capture el error.</li>
+        <li>El mensaje de error debe ser mostrado al usuario como contenido HTML de una etiqueta
+        span.</li>
+</ol>
+    <hr>
+    <section id="app"></section>
+
+    <script>
+        
+        const sectionApp = document.getElementById('app');
+
+        async function getUsers() {
+            try{
+                const res = await  fetch("http://otroejemplo.cl");
+                const data = await res.json();
+                return data;
+            } catch(e){
+                sectionApp.innerHTML = `
+                <h2>¡Algo salío mal! Error: Failed to fetch</h2>
+                `;
+            }
+
+        }
+        async function render() {
+            const users = await getUsers();
+            let template = '';
+            users.forEach((element) => {
+                template += `
+                 <div class="card">
+                        <div class="container">
+                        <h4><b>${element.name}</b></h4>
+                        <p><b>${element.email}</p>
+                    </div>
+                    </div> 
+                `;
+            });
+            sectionApp.innerHTML = template;
+
+        }
+
+        render();
+
+    </script>
+</body>
+
+</html>

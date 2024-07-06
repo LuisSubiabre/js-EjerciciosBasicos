@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios de JSONPlaceholder</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        .card {
+            background-color: #3a3a3a;
+            box-shadow: 0 4px 8px 0 rgba(141, 60, 60, 0.2);
+            margin-bottom: 4rem;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(125, 69, 69, 0.2);
+        }
+        .container {
+          
+            padding: 2px 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Usuarios de JSONPlaceholder</h1>
+    <p>Realicemos el siguiente ejercicio en donde debas crear una galería de Cards con el nombre,
+        correo y número de teléfono de los 10 usuarios que nos entrega la API JSONPlaceholder en
+        el siguiente endpoint: </p>
+    <p> <strong><code> https://jsonplaceholder.typicode.com/users</code></strong></p>
+    <ol>Realiza los siguientes pasos:</ol>
+    <li>Crea una sección en el HTML y selecciona el elemento del DOM utilizando JavaScript</li>
+    <li>Crea una función para obtener los usuarios de JSONPlaceholder</li>
+    <li>Crea una función que renderice los usuarios en el DOM</li>
+    <li>Realiza ajustes estéticos que creas convenientes</li>
+
+    <hr>
+    <section id="app"></section>
+
+    <script>
+        const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+        const sectionApp = document.getElementById('app');
+
+        async function getUsers() {
+            try{
+                const res = await fetch(apiUrl);
+                const data = await res.json();
+                return data;
+            } catch(e){
+                alert(e.message);
+            }
+
+        }
+        async function render() {
+            const users = await getUsers();
+            let template = '';
+            users.forEach((element) => {
+                template += `
+                 <div class="card">
+                        <div class="container">
+                        <h4><b>${element.name}</b></h4>
+                        <p><b>${element.email}</p>
+                    </div>
+                    </div> 
+                `;
+            });
+            sectionApp.innerHTML = template;
+
+        }
+
+        render();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plugins</title>
+
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h2>Plugins de JavaScript (Chart Js)</h2>
+    <p>Las bibliotecas y los plugins son códigos disponibles que podemos integrar en nuestras
+        aplicaciones para añadir nuevas funcionalidades. Existen muchos plugins para JavaScript
+        que nos pueden ayudar a lograr funcionalidades muy interesantes.
+        Veamos un ejemplo de cómo ocupar Plugins usando Chart Js para renderizar una gráfica
+        interactiva.</p>
+    <p>Para ocupar este Plugin, agregaremos el siguiente CDN en el head de nuestra página:</p>
+    <code> &#60;script src="https://cdn.jsdelivr.net/npm/chart.js"></code>
+    <p>Endpoint:</p>
+    <code>https://api.gael.cloud/general/public/sismos </code>
+    <p>Obtener los últimos 15 registros de sismos en Chile. Utilizar esta data para graficar con Chart JS</p>
+
+    <hr />
+    <h1>Últimos Sismos en Chile</h1>
+    <div class="grafica">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        async function getAndCreateDataToChart() {
+            const res = await
+                fetch("https://api.gael.cloud/general/public/sismos");
+            const sismos = await res.json();
+            const labels = sismos.map((sismo) => {
+                return sismo.Fecha;
+            });
+            const data = sismos.map((sismo) => {
+                const magnitud = sismo.Magnitud.split(" ")[0];
+                return Number(magnitud);
+            });
+            const datasets = [
+                {
+                    label: "Sismo",
+                    borderColor: "rgb(255, 99, 132)",
+                    data
+                }
+            ];
+            return { labels, datasets };
+        }
+        async function renderGrafica() {
+            const data = await getAndCreateDataToChart();
+            const config = {
+                type: "line",
+                data
+            };
+            const myChart = document.getElementById("myChart");
+            myChart.style.backgroundColor = "white";
+            new Chart(myChart, config);
+        }
+        renderGrafica();
+    </script>
+</body>
+
+</html>

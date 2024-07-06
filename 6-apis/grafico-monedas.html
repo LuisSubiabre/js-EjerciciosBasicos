@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plugins</title>
+
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h2>Plugins de JavaScript (Chart Js)</h2>
+    <p>Para ocupar este Plugin, agregaremos el siguiente CDN en el head de nuestra página:</p>
+    <code> &#60;script src="https://cdn.jsdelivr.net/npm/chart.js"></code>
+    <p>Endpoint:</p>
+    <code>https://api.gael.cloud/general/public/monedas</code>
+    <p>Lo primero será entender que el objeto de configuración tiene la siguiente estructura:</p>
+    <code>
+        <pre>
+            {
+                type: String,
+                data: {
+                   labels: Array,
+                   datasets: [{
+                   label: String,
+                   backgroundColor: String,
+                   data: Array,
+                  }]
+                 }
+                }
+        </pre>
+    </code>
+    <ul>
+        <li><strong>type:</strong> Define el tipo de gráfica que se renderiza. Entre las opciones tenemos: line, bar,
+            radar, entre otros.</li>
+
+        <li><strong>labels:</strong> Es un arreglo de títulos o Strings que representarán los valores de la gráfica en
+            el eje horizontal. Estos valores serán sincronizados según el orden en el que se declaren los datos.</li>
+
+        <li><strong>datasets:</strong> Es el grupo de estadísticas que se renderizan en la misma gráfica. Para los
+            ejemplos de esta lectura solo trabajaremos con 1 estadística.</li>
+
+        <li><strong>label:</strong> Será el título del grupo de datos que se definan en la data de esta estadística</li>
+
+        <li><strong>backgroundColor:</strong> El color de los datos que se expondrá en la gráfica. Por ejemplo, en el
+            caso de ser una gráfica de tipo line, el color corresponderá al color de la línea.</li>
+
+        <li><strong>data:</strong> Es un arreglo de valores que se insertarán en el eje vertical.</li>
+    </ul>
+
+    <hr />
+    <h1>Consumo de la API GAEL</h1>
+    <div class="grafica">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+
+        /* Funcion que consume API REST */
+        async function getMonedas() {
+            const apiURL = 'https://api.gael.cloud/general/public/monedas';
+            const res = await fetch(apiURL);
+            const datos = await res.json();
+            return datos;
+        }
+        /* Funcion que prepara el objetivo de configuración para la gráfica */
+        function confGrafica(datos){
+            const tipoGrafica = 'line';
+            const nombreMonedas = datos.map((dato) => dato.Codigo);
+            const titulo = 'Monedas';
+            const colorLinea = 'red';
+            const valores = datos.map((dato) => {
+                const valor = dato.Valor.replace(',','.');
+                return Number(valor);
+            });
+
+            //Creación del objeto
+            const config = {
+                type: tipoGrafica,
+                data: {
+                    labels: nombreMonedas,
+                    datasets: [{
+                        label: titulo,
+                        backgroundColor: colorLinea,
+                        data: valores,
+                  }]                
+                }
+            };
+            return config;
+        }
+    
+        async function renderGrafica(){
+            const monedas = await getMonedas();
+            const config = confGrafica(monedas);
+            const chartDOM = document.getElementById('myChart');
+            chartDOM.style.backgroundColor = 'white';
+            new Chart(chartDOM, config);
+        }
+    renderGrafica();
+      
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plugins</title>
+
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h2>Gráfica de estadísticas</h2>
+    <p>Realicemos el siguiente ejercicio donde deberás graficar las estadísticas de Pikachú. Para
+        esto será necesario usar fetch para consultar el siguiente endpoint:</p>
+    <code>https://pokeapi.co/api/v2/pokemon/pikachu</code>
+    <p>Posteriormente, prepara la data de las estadísticas para que sirva como conjunto de datos
+        para Chart Js.</p>
+    <code> &#60;script src="https://cdn.jsdelivr.net/npm/chart.js"></code>
+
+
+    <h4><mark>Pikachu</mark> </h4>
+    <div class="grafica">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        /* Consumo de API */
+        async function apiPokemon() {
+            const res = await fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
+            const pokemon = await res.json();
+
+            const labels = pokemon.stats.map((stat) => {
+                return stat.stat.name.toUpperCase();
+            });
+
+            const data = pokemon.stats.map((stat) => {
+                return stat.base_stat;
+            });
+
+            const datasets = [
+                {
+                    label: "Estadísticas de Pikachu",
+                    borderColor: "rgb(255, 99, 132)",
+                    data
+                }
+            ];
+            return { labels, datasets };
+        }
+
+        async function renderGrafica(){
+            const data = await apiPokemon();
+            const config ={
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: data.datasets
+                }
+            };
+
+            const myChart = document.getElementById('myChart');
+            myChart.style.backgroundColor = 'white';
+            new Chart(myChart, config);
+
+        }
+renderGrafica();
+
+    </script>
+</body>
+
+</html>
